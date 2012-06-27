@@ -17,6 +17,18 @@ else
 fi
 
 echo
+echo "Checking for watch definitions in .rtorrent.rc..." ; sleep 1
+echo
+count=`cat ./.rtorrent.rc|grep load_start|wc -l`
+if [ $count -lt 1 ]; then
+	echo "No load_start found in .rtorrent.rc! Check your watch_directory definitions. Quitting..."
+	exit;
+else
+	echo "Watch directories found! Installation continues..." ; sleep 1
+fi
+
+
+echo
 echo "Checking for old config file..."; sleep 1
 echo 
 if [ -a /etc/rt-magnet.conf ]; then
@@ -29,17 +41,14 @@ if [ -a /etc/rt-magnet.conf ]; then
       exit ;;
 esac
   else
-    echo "No old config file found. Creating new."; sleep 1
+    echo "No old config file found. Creating new." ; sleep 1
 fi
 
-
-#echo "DEBUG part"
 echo
 echo "Creating conf-file..."; sleep 1
 echo
-#touch /etc/rt-magnet.conf
 echo "# Automatically created by RT-magnet installer." > /etc/rt-magnet.conf
-cat .rtorrent.rc | grep watch_directory | grep -v '#' >> /etc/rt-magnet.conf
+cat .rtorrent.rc | grep load_start | grep -v '#' >> /etc/rt-magnet.conf
 echo "/etc/rt-magnet.conf created. Exiting..."
 echo
 exit;
