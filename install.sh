@@ -38,7 +38,7 @@ echo
 echo "Creating conf-file..."; sleep 1
 echo
 #touch /etc/rt-magnet.conf
-echo "# Automatically created by rt-gui installer." > /etc/rt-magnet.conf
+echo "# Automatically created by RT-magnet installer." > /etc/rt-magnet.conf
 cat .rtorrent.rc | grep watch_directory | grep -v '#' >> /etc/rt-magnet.conf
 echo "/etc/rt-magnet.conf created. Exiting..."
 echo
