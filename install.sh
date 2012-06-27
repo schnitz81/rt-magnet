@@ -19,7 +19,7 @@ fi
 echo
 echo "Checking for old config file..."; sleep 1
 echo 
-if [ -a /etc/rt-gui.conf ]; then
+if [ -a /etc/rt-magnet.conf ]; then
   echo "Old config file exists! Do you want to overwrite and generate a new? (y/n)"
   read CONFIRM
   case $CONFIRM in
@@ -37,10 +37,10 @@ fi
 echo
 echo "Creating conf-file..."; sleep 1
 echo
-#touch /etc/rt-gui.conf
-echo "# Automatically created by rt-gui installer." > /etc/rt-gui.conf
-cat .rtorrent.rc | grep watch_directory | grep -v '#' >> /etc/rt-gui.conf
-echo "/etc/rt-gui.conf created. Exiting..."
+#touch /etc/rt-magnet.conf
+echo "# Automatically created by rt-gui installer." > /etc/rt-magnet.conf
+cat .rtorrent.rc | grep watch_directory | grep -v '#' >> /etc/rt-magnet.conf
+echo "/etc/rt-magnet.conf created. Exiting..."
 echo
 exit;
 

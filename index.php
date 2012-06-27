@@ -25,7 +25,7 @@ echo "<title>RT-magnet</title>";
 echo "<form action='magnet.php' method='post'>";
 echo "<br>";
 
-$filepath = '/etc/rt-gui.conf';
+$filepath = '/etc/rt-magnet.conf';
 
 if(!file_exists($filepath)){
    echo "Error: $filepath does not exist. Run install script first.";
