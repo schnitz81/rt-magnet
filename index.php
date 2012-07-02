@@ -32,29 +32,12 @@ if(!file_exists($filepath)){
    exit;
 }
 
-$lines = file($filepath);
-
-$nrOfCategories = count(preg_grep("/load_start/",$lines));    
-if($nrOfCategories<1){
-   echo "Error: No instances of load_start found in config file!";
-   exit;
-}
-
-// Read file into array
-$pattern = '/load_start=(.+\/)([0-9A-Za-z#*$%=@!{}~&()<>?.:;_|^]+[ 0-9A-Za-z#*$%=@!{}~&()<>?.:;_|^]+\,)/i';
-$arrLinesMasked = array();
-foreach( $lines as $line ){
-  if( preg_match( $pattern, $line, $matches ) )
-    $arrLinesMasked[] = trim($matches[1]);
-}
-
+$arrLinesMasked = array_map(trim, file_get_contents($filepath));
 
 function getCategoryName($strPath){            // Extract category names from every watchdir path
    $intSlashPos = strrpos($strPath, "/", -2);
    return substr($strPath,$intSlashPos+1,-1);
 }
-
-
 
 // Generate page:
 

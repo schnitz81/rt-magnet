@@ -1,55 +1,39 @@
 #!/bin/bash
+RT_MAGNET_CONFIG="/etc/rt-magnet.conf" # global file for 
+RT_CONFIG=".rtorrent.rc" # Local settings for rtorrent
+UNIQ=true # Force the config file to only contain unique paths
+#VERBOSE=false # not in use
 
-if [ "$(id -u)" != "0" ]; then
-   echo "This install script needs to be run as root."; 
-   exit 1
+
+CONFIG_DIR=$(dirname $RT_CONFIG)
+if [ "$CONFIG_DIR" == "." ]; then
+  CONFIG_DIR=$(pwd)
 fi
 
-echo
-echo "Checking for rtorrent config file..."; sleep 1
-echo
-sleep 1 
-if [ -s .rtorrent.rc ]; then
-  echo ".rtorrent.rc found. Installation continues..." ; sleep 1
+# Make sure we can write to the target path
+if [ -w $CONFIG_DIR ]; then
+  touch $RT_MAGNET_CONFIG
 else
-  echo "No valid .rtorrent.rc found in this directory! Quitting..."
-  exit
+  echo "Can't write to configuration directory"
+  echo "Exiting..."
+  exit 1
 fi
 
-echo
-echo "Checking for watch definitions in .rtorrent.rc..." ; sleep 1
-echo
-count=`cat ./.rtorrent.rc|grep load_start|wc -l`
-if [ $count -lt 1 ]; then
-	echo "No load_start found in .rtorrent.rc! Check your watch_directory definitions. Quitting..."
-	exit;
+# Add all load_start values to the config file
+if [ -s $RT_CONFIG ]; then
+  # First get all non-comments section, extract load_start value, replace ~ 
+  # with the $HOME variable, and dump it in the config file.
+  grep -ohP '^[^#]{1,}' $RT_CONFIG | grep -ohP '(?<=load_start=)[^,]{1,}' | sed -e "s#~#$HOME##" >> $RT_MAGNET_CONFIG
 else
-	echo "Watch directories found! Installation continues..." ; sleep 1
+  echo "$RT_CONFIG was not found in this directory!"
+  echo "Exiting..."
+  exit 1
 fi
 
-
-echo
-echo "Checking for old config file..."; sleep 1
-echo 
-if [ -a /etc/rt-magnet.conf ]; then
-  echo "Old config file exists! Do you want to overwrite and generate a new? (y/n)"
-  read CONFIRM
-  case $CONFIRM in
-    y|Y|yes|YES|Yes) echo ;;
-    *)
-      echo " Quitting..."
-      exit ;;
-esac
-  else
-    echo "No old config file found. Creating new." ; sleep 1
+# Since we don't reset the file, we may get duplicates, which we can fix if we
+# set the UNIQ flag at the top of the file.
+if [ $UNIQ == true ]; then
+  sort -u $RT_MAGNET_CONFIG -o $RT_MAGNET_CONFIG
 fi
 
-echo
-echo "Creating conf-file..."; sleep 1
-echo
-echo "# Automatically created by RT-magnet installer." > /etc/rt-magnet.conf
-cat .rtorrent.rc | grep load_start | grep -v '#' >> /etc/rt-magnet.conf
-echo "/etc/rt-magnet.conf created. Exiting..."
-echo
-exit;
-
+exit 0
