@@ -4,7 +4,7 @@ In order for the rt-magnet GUI to work, there must be a config file with the wat
 
 sudo ./install.sh
 
-- Put the two .php-files in a subfolder that will be webshared by your webserver software (defined as DocumentRoot by Apache config). For example: /var/www/magnet/ . Also, make sure that your webserver is configured to use PHP.
+- Put the two .php-files in a subfolder that will be webshared by your webserver software (defined as DocumentRoot by Apache config). For example: /var/www/magnet/
 
 Now, you should be able to reach the GUI with your browser. If you're running the webserver on the same machine, the adress should be i.e. http://127.0.0.1/magnet
 
