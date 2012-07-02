@@ -40,8 +40,8 @@ if [ -a /etc/rt-magnet.conf ]; then
       echo " Quitting..."
       exit ;;
 esac
-  else
-    echo "No old config file found. Creating new." ; sleep 1
+else
+   echo "No old config file found. Creating new." ; sleep 1
 fi
 
 echo
@@ -49,7 +49,42 @@ echo "Creating conf-file..."; sleep 1
 echo
 echo "# Automatically created by RT-magnet installer." > /etc/rt-magnet.conf
 cat .rtorrent.rc | grep load_start | grep -v '#' >> /etc/rt-magnet.conf
-echo "/etc/rt-magnet.conf created. Exiting..."
+echo "/etc/rt-magnet.conf created." ; sleep 1
+
+# Check if tilde is used
 echo
-exit;
+echo "Checking for tilde usage in watchdir paths..."
+sleep 1 ; echo
+if grep -q 'load_start=~' /etc/rt-magnet.conf ; then
+   echo "Tilde is being used! Replacing with extended paths..." ; sleep 1
+else
+   echo "No tilde usage found, all OK. Exiting..."
+   exit;
+fi
+
+# Get home directory for current path hierarchy 
+echo
+echo "Checking for sane home dir in current path hierarchy..." ; sleep 1
+echo
+currentPath=$(cd "$( dirname "$0" )" && pwd)
+if [[ "$currentPath" == "/root"* ]] ; then
+   homedir="/root"
+   echo "Home dir is /root."
+elif [[ "$currentPath" == "/home"* ]] ; then
+   #homedir=$(echo $currentPath | cut -f-3 -d'/') 
+   homedir=`echo $currentPath | cut -f-3 -d'/'`
+   echo "Home dir is $homedir."
+else
+   echo "Error: No sane homedir found. Make sure you are running the install script under /root or /home/* structure."
+   exit;
+fi
+
+# Replace tilde with home path
+echo
+echo "Changing tilde to extended home dir paths..." ; sleep 1
+SEARCH="load_start=~"
+sed -i "s#${SEARCH}#load_start=${homedir}#g" /etc/rt-magnet.conf
+echo
+echo "All done. Exiting..."
+
 
