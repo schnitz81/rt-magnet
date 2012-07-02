@@ -2,15 +2,18 @@ In order for the rt-magnet GUI to work, there must be a config file with
 the watch directories defined, /etc/rt-magnet.conf. This can be 
 generated automatically by the install script. 
 
-- Put the install script in the same directory as your .rtorrent.rc file
-  (most commonly in your home folder) and run it as root:
+-  Put the install script in the same directory as your .rtorrent.rc 
+   file (most commonly in your home folder) and run it as root:
 
-sudo ./install.sh
+       sudo ./install.sh
 
-- Put the two .php-files in a subfolder that will be webshared by your 
-  webserver software (defined as DocumentRoot by Apache config). For 
-  example: /var/www/magnet/ . Also, make sure that your webserver is 
-  configured to use PHP.
+-  Put the two .php-files in a subfolder that will be webshared by your
+   webserver software (defined as DocumentRoot by Apache config). For 
+   example:
+
+       /var/www/magnet/
+
+   Also, make sure that your webserver is configured to use PHP.
 
 Now, you should be able to reach the GUI with your browser. If you're 
 running the webserver on the same machine, the adress should be i.e. 

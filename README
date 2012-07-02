@@ -1,11 +1,14 @@
-rt-magnet is a PHP-based addon to handle magnetlinks for the GNU/Linux 
-torrent client rTorrent (http://libtorrent.rakshasa.no/). You get to 
-choose which directory every magnetlink torrent is to be saved, all 
-according to your alread defined watch directories. Please see the HOWTO
-document for installation instructions.
+1.  Introduction
 
-REQUIREMENTS
-It is necessary to have watch directories configured and used by 
-rTorrent in order to make use of rt-magnet. You will also need a 
-webserver running, like Apache or similar, to reach the GUI with your 
-web browser.
+   rt-magnet is a PHP-based addon to handle magnetlinks for the 
+   GNU/Linux torrent client rTorrent (http://libtorrent.rakshasa.no/).
+   You get to choose which directory every magnetlink torrent is to be
+   saved, all according to your alread defined watch directories. 
+   Please see the HOWTO document for installation instructions.
+
+2.  Requirements
+
+   It is necessary to have watch directories configured and used by 
+   rTorrent in order to make use of rt-magnet. You will also need a 
+   webserver running, like Apache or similar, to reach the GUI with your 
+   web browser.
