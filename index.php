@@ -1,19 +1,5 @@
 <html>
 <head>
-<script language="javascript"> 
-function toggle() {
-	var ele = document.getElementById("toggleText");
-	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "show watch directories...";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "hide";
-	}
-} 
-</script>
 </head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -85,8 +71,7 @@ echo "<br />";
 </form><br /><br />;
 
 <!------ Show and hide option to display array of watch directories. --> 
-<a id="displayText" href="javascript:toggle();">show watch directories...</a>
-<div id="toggleText" style="display: none"><h3>
+<div id="toggleText"><h3>
 
 <?php
 foreach($arrLinesMasked as $arrItem)
@@ -95,4 +80,8 @@ foreach($arrLinesMasked as $arrItem)
 
 </h3>
 </div>
+<script type="text/javascript">
+  document.body.innerHTML += "<button onclick=\"s=document.getElementById('toggleText').style;s.display=s.display=='block'?'none':'block'\">Toggle</button>";
+  document.getElementById("toggleText").style.display = "none";
+</script>
 </html>
