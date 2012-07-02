@@ -56,7 +56,7 @@ echo
 echo
 echo "Checking for tilde usage in watchdir paths..."
 sleep 1 ; echo
-if grep -q 'load_start=~' test.rc ; then
+if grep -q 'load_start=~' /etc/rt-magnet.conf ; then
    echo "Tilde is being used! Replacing with extended paths..." ; sleep 1
 else
    echo "No tilde usage found, all OK. Exiting..."
@@ -84,7 +84,7 @@ fi
 echo
 echo "Changing tilde to extended homedir paths.." ; sleep 1
 SEARCH="load_start=~"
-sed -i "s#${SEARCH}#load_start=${homedir}#g" test.rc
+sed -i "s#${SEARCH}#load_start=${homedir}#g" /etc/rt-magnet.conf
 echo
 echo "All done. Exiting..."
 
