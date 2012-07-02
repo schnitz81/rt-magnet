@@ -95,4 +95,5 @@ foreach($arrLinesMasked as $arrItem)
   echo "<h3>$arrItem</h3>";
 ?>
 </div>
+</body>
 </html>
