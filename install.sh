@@ -50,7 +50,6 @@ echo
 echo "# Automatically created by RT-magnet installer." > /etc/rt-magnet.conf
 cat .rtorrent.rc | grep load_start | grep -v '#' >> /etc/rt-magnet.conf
 echo "/etc/rt-magnet.conf created." ; sleep 1
-echo
 
 # Check if tilde is used
 echo
@@ -82,7 +81,7 @@ fi
 
 # Replace tilde with home path
 echo
-echo "Changing tilde to extended homedir paths.." ; sleep 1
+echo "Changing tilde to extended home dir paths..." ; sleep 1
 SEARCH="load_start=~"
 sed -i "s#${SEARCH}#load_start=${homedir}#g" /etc/rt-magnet.conf
 echo
