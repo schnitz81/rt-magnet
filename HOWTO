@@ -1,4 +1,4 @@
-In order for the RT-magnet GUI to work, there must be a config file with the watch directories defined, /etc/rt-magnet.conf. This can be generated automatically by the install script. 
+In order for the rt-magnet GUI to work, there must be a config file with the watch directories defined, /etc/rt-magnet.conf. This can be generated automatically by the install script. 
 
 - Put the install script in the same directory as your .rtorrent.rc file (most commonly in your home folder) and run it as root:
 
