@@ -1,10 +1,20 @@
 <html>
 <head>
-<script language="javascript"> 
+<script type="textr/javascript">
+// Get the actual CSS value
+function get_style(element, style_property) {
+	if(element.currentStyle) { //Internet Explorer
+		return self.currentStyle[style_property];
+	} else if(window.getComputedStyle) { //Firefox
+		return window.getComputedStyle(element, nil).getPropertyValue(style_property);
+	} else { //Get inlined value
+		return element.style[style_attribute];
+        }
+}
 function toggle() {
 	var ele = document.getElementById("toggleText");
 	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
+	if( get_style(ele, "display") == "block" ) {
     		ele.style.display = "none";
 		text.innerHTML = "show watch directories...";
   	}
@@ -12,7 +22,7 @@ function toggle() {
 		ele.style.display = "block";
 		text.innerHTML = "hide";
 	}
-} 
+}
 </script>
 </head>
 
