@@ -1,6 +1,6 @@
 <html>
 <head>
-<script language="javascript"> 
+<script type="text/javascript"> 
 function toggle() {
 	var ele = document.getElementById("toggleText");
 	var text = document.getElementById("displayText");
@@ -14,17 +14,13 @@ function toggle() {
 	}
 } 
 </script>
+
+<title>RT-magnet</title>
 </head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
-
-
 <?php
-echo "<title>RT-magnet</title>";
-echo "<form action='magnet.php' method='post'>";
-echo "<br>";
-
 $filepath = '/etc/rt-magnet.conf';
 
 if(!file_exists($filepath)){
@@ -40,42 +36,47 @@ function getCategoryName($strPath){            // Extract category names from ev
 }
 
 // Generate page:
+?>
+<pre>
+                                                                                                          
+          _/_/_/    _/_/_/_/_/                                                                    _/      
+         _/    _/      _/              _/_/_/  _/_/      _/_/_/    _/_/_/  _/_/_/      _/_/    _/_/_/_/   
+        _/_/_/        _/  _/_/_/_/_/  _/    _/    _/  _/    _/  _/    _/  _/    _/  _/_/_/_/    _/        
+       _/    _/      _/              _/    _/    _/  _/    _/  _/    _/  _/    _/  _/          _/         
+      _/    _/      _/              _/    _/    _/    _/_/_/    _/_/_/  _/    _/    _/_/_/      _/_/      
+                                                                   _/                                     
+                                                              _/_/                                        
+</pre>
+<br />
 
-echo "<pre>";
-echo "                                                                                                          <br>";
-echo "          _/_/_/    _/_/_/_/_/                                                                    _/      <br>";
-echo "         _/    _/      _/              _/_/_/  _/_/      _/_/_/    _/_/_/  _/_/_/      _/_/    _/_/_/_/   <br>";
-echo "        _/_/_/        _/  _/_/_/_/_/  _/    _/    _/  _/    _/  _/    _/  _/    _/  _/_/_/_/    _/        <br>";
-echo "       _/    _/      _/              _/    _/    _/  _/    _/  _/    _/  _/    _/  _/          _/         <br>";
-echo "      _/    _/      _/              _/    _/    _/    _/_/_/    _/_/_/  _/    _/    _/_/_/      _/_/      <br>";
-echo "                                                                   _/                                     <br>";
-echo "                                                              _/_/                                        <br>";
-echo "</pre><br />";
-
-echo "Magnet link: <input type='text' name='magnetlink' size='120' /><br /><br />";
-echo "Category:&nbsp;&nbsp;&nbsp;&nbsp;";
-echo "<select name='formCategory'>";
+<form action="magnet.php" method="post">
+  <br>
+  Magnet link: <input type="text" name="magnetlink" size="120" />
+  <br />
+  <br />
+  Category:&nbsp;&nbsp;&nbsp;&nbsp; <select name="formCategory">
+<?php
 echo "<option value=''></option>"; 		// Empty alternative by default (force to choose)
 foreach ($arrLinesMasked as $strPath ){ 	// Generate drop-down menu
-   $categoryName = getCategoryName($strPath);
-   echo "<option value='$strPath'>$categoryName</option>";
+  $categoryName = getCategoryName($strPath);
+  echo "<option value='$strPath'>$categoryName</option>";
 } //for
-echo "</select>";
-echo "<br />";
 ?>
-<br><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type='submit' value='Send' />
-</form><br /><br />;
-
+  </select>
+  <br />
+  <br>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="submit" value="Send" />
+</form>
+<br />
+<br />
 <!------ Show and hide option to display array of watch directories. --> 
 <a id="displayText" href="javascript:toggle();">show watch directories...</a>
-<div id="toggleText" style="display: none"><h3>
-
+<div id="toggleText" style="display: none">
 <?php
 foreach($arrLinesMasked as $arrItem)
-  echo $arrItem,"<br>";
+  echo "<h3>$arrItem</h3>";
 ?>
-
-</h3>
 </div>
+</body>
 </html>
