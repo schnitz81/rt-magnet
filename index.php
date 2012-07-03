@@ -1,6 +1,6 @@
 <html>
 <head>
-<script language="javascript"> 
+<script type="text/javascript"> 
 function toggle() {
 	var ele = document.getElementById("toggleText");
 	var text = document.getElementById("displayText");
