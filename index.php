@@ -66,24 +66,40 @@ function getCategoryName($strPath){            // Extract category names from ev
 </pre>
 <br />
 
-<form action="magnet.php" method="post">
-  <br>
-  Magnet link: <input type="text" name="magnetlink" size="120" />
-  <br />
-  <br />
-  Category:&nbsp;&nbsp;&nbsp;&nbsp; <select name="formCategory">
-<?php
-echo "<option value=''></option>"; 		// Empty alternative by default (force to choose)
-foreach ($arrLinesMasked as $strPath ){ 	// Generate drop-down menu
-  $categoryName = getCategoryName($strPath);
-  echo "<option value='$strPath'>$categoryName</option>";
-} //for
-?>
-  </select>
-  <br />
-  <br>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="submit" value="Send" />
+<form action="magnet.php" method="post" border="0">
+  <table>
+    <tr>
+      <td>
+        <label for="magnetlink">Magnet link:</label>
+      </td>
+      <td>
+        <input type="text" name="magnetlink" id="magnetlink" size="120" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="formCategory">Category:</label>
+      </td>
+      <td>
+        <select name="formCategory" id="formCategory">
+          <?php
+          // Empty alternative by default (force to choose)
+          echo "<option value=''></option>";
+          // Generate drop-down menu
+          foreach ($arrLinesMasked as $strPath ){
+            $categoryName = getCategoryName($strPath);
+            echo "<option value='$strPath'>$categoryName</option>";
+          } //for
+          ?>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Send" />
+      </td>
+    </tr>
+  </table>
 </form>
 <br />
 <br />
