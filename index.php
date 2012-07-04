@@ -105,6 +105,8 @@ if(!file_exists($filepath)){
 
 $arrLinesMasked = array_map(trim, file_get_contents($filepath));
 
+print $filepath;
+
 function getCategoryName($strPath){            // Extract category names from every watchdir path
    $intSlashPos = strrpos($strPath, "/", -2);
    return substr($strPath,$intSlashPos+1,-1);
