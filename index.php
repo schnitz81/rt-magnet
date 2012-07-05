@@ -1,3 +1,18 @@
+<!--This file is part of rt-torrent.
+
+    rt-torrent is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    rt-magnet is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <html>
 <head>
 <script type="text/javascript"> 
@@ -90,7 +105,7 @@ function(context) {
 
 </script>
 
-<title>RT-magnet</title>
+<title>rt-magnet</title>
 </head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -114,13 +129,14 @@ function getCategoryName($strPath){            // Extract category names from ev
 ?>
 <pre>
                                                                                                           
-          _/_/_/    _/_/_/_/_/                                                                    _/      
-         _/    _/      _/              _/_/_/  _/_/      _/_/_/    _/_/_/  _/_/_/      _/_/    _/_/_/_/   
-        _/_/_/        _/  _/_/_/_/_/  _/    _/    _/  _/    _/  _/    _/  _/    _/  _/_/_/_/    _/        
-       _/    _/      _/              _/    _/    _/  _/    _/  _/    _/  _/    _/  _/          _/         
-      _/    _/      _/              _/    _/    _/    _/_/_/    _/_/_/  _/    _/    _/_/_/      _/_/      
-                                                                   _/                                     
-                                                              _/_/                                        
+                                                                                                      
+                _/                                                                            _/      
+   _/  _/_/  _/_/_/_/              _/_/_/  _/_/      _/_/_/    _/_/_/  _/_/_/      _/_/    _/_/_/_/   
+  _/_/        _/      _/_/_/_/_/  _/    _/    _/  _/    _/  _/    _/  _/    _/  _/_/_/_/    _/        
+ _/          _/                  _/    _/    _/  _/    _/  _/    _/  _/    _/  _/          _/         
+_/            _/_/              _/    _/    _/    _/_/_/    _/_/_/  _/    _/    _/_/_/      _/_/      
+                                                               _/                                     
+                                                          _/_/                                        
 </pre>
 <br />
 
@@ -130,15 +146,17 @@ function getCategoryName($strPath){            // Extract category names from ev
       <td>
         <label for="magnetlink">Magnet link:</label>
       </td>
+    </tr>
+    <tr>
       <td>
-        <input type="text" name="magnetlink" id="magnetlink" size="120" />
+        <textarea name="magnetlink" id="magnetlink" onfocus="if(this.value==this.defaultValue)this.value='';" cols=50 rows=6 />
+	   Paste magnetlink here:
+	</textarea>
       </td>
     </tr>
     <tr>
       <td>
         <label for="formCategory">Category:</label>
-      </td>
-      <td>
         <select name="formCategory" id="formCategory">
           <?php
           // Empty alternative by default (force to choose)
