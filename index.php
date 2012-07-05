@@ -15,17 +15,6 @@
 -->
 <html>
 <head>
-<script type="text/javascript"> 
-function toggle() {
-	var ele = document.getElementById("toggleText");
-	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "show watch directories...";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "hide";
 <script type="text/javascript">
 // Get the actual CSS value
 function get_style(element, style_property) {
@@ -183,14 +172,11 @@ function getCategoryName($strPath){            // Extract category names from ev
 <br />
 <br />
 <!------ Show and hide option to display array of watch directories. --> 
-<a id="displayText" href="javascript:toggle();">show watch directories...</a>
-<div id="toggleText" style="display: none">
-<!--<div id="toggleText">-->
-
-<?php
-foreach($arrLinesMasked as $arrItem)
-  echo "<h3>$arrItem</h3>";
-?>
+<div id="toggleText">
+  <?php
+  foreach($arrLinesMasked as $arrItem)
+    echo "  <h3>$arrItem</h3>\n";
+  ?>
 </div>
 </body>
 </html>
