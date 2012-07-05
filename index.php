@@ -11,7 +11,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with rt-magnet.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <html>
 <head>
@@ -118,9 +118,12 @@ if(!file_exists($filepath)){
    exit;
 }
 
-$arrLinesMasked = array_map(trim, file_get_contents($filepath));
+$arrLinesFull = array_map(trim, file($filepath));  // Read config lines from file into array.
+$arrLinesMasked = array(); 
+foreach( $arrLinesFull as $line )	       // Mask path from each line.
+   $arrLinesMasked[] = substr($line,0,strrpos($line,"/")+1);
 
-function getCategoryName($strPath){            // Extract category names from every watchdir path
+function getCategoryName($strPath){            // Extract category names from every watchdir path.
    $intSlashPos = strrpos($strPath, "/", -2);
    return substr($strPath,$intSlashPos+1,-1);
 }
@@ -182,8 +185,7 @@ function getCategoryName($strPath){            // Extract category names from ev
 <!------ Show and hide option to display array of watch directories. --> 
 <a id="displayText" href="javascript:toggle();">show watch directories...</a>
 <div id="toggleText" style="display: none">
-=======
-<div id="toggleText"><h3>
+<!--<div id="toggleText">-->
 
 <?php
 foreach($arrLinesMasked as $arrItem)
