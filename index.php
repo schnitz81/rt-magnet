@@ -118,14 +118,15 @@ if(!file_exists($filepath)){
    exit;
 }
 
-$arrLinesFull = array_map(trim, file($filepath));  // Read config lines from file into array.
-$arrLinesMasked = array(); 
-foreach( $arrLinesFull as $line )	       // Mask path from each line.
-   $arrLinesMasked[] = substr($line,0,strrpos($line,"/")+1);
+// Get our target directories from the configuration file.
+$directories = array_map
+   ('dirname', array_map  // Extract the directory path for each line.
+      ('trim', file       // Remove whitespace for each line.
+         ($filepath)));   // Load config lines into an array.
 
-function getCategoryName($strPath){            // Extract category names from every watchdir path.
-   $intSlashPos = strrpos($strPath, "/", -2);
-   return substr($strPath,$intSlashPos+1,-1);
+
+function getCategoryName($strPath){ // Extract category names from every watchdir path.
+   return basename($strPath); 
 }
 
 // Generate page:
@@ -165,9 +166,9 @@ function getCategoryName($strPath){            // Extract category names from ev
           // Empty alternative by default (force to choose)
           echo "<option value=''></option>";
           // Generate drop-down menu
-          foreach ($arrLinesMasked as $strPath ){
-            $categoryName = getCategoryName($strPath);
-            echo "<option value='$strPath'>$categoryName</option>";
+          foreach ($directories as $directory){
+            $categoryName = getCategoryName($directory);
+            echo "<option value=\"$directory\">$categoryName</option>";
           } //for
           ?>
         </select>
@@ -188,8 +189,8 @@ function getCategoryName($strPath){            // Extract category names from ev
 <!--<div id="toggleText">-->
 
 <?php
-foreach($arrLinesMasked as $arrItem)
-  echo "<h3>$arrItem</h3>";
+foreach($directories as $directory)
+  echo "<h3>$directory</h3>";
 ?>
 </div>
 </body>
