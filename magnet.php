@@ -37,7 +37,7 @@ elseif(!is_dir($watchDirectory)){
 
 // Check watch directory writability
 
-if(!is_writable(substr($watchDirectory,0,-1))){
+if(!is_writable(substr($watchDirectory,0))){
    print "Watch directory is not writable. Please change folder permissions.";
    exit;
 }
