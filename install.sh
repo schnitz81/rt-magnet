@@ -36,4 +36,5 @@ if [ $UNIQ == true ]; then
   sort -u $RT_MAGNET_CONFIG -o $RT_MAGNET_CONFIG
 fi
 
+echo "Config file created."
 exit 0
