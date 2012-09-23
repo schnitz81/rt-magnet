@@ -20,5 +20,4 @@ running the webserver on the same machine, the adress should be i.e.
 http://127.0.0.1/magnet
 
 If you add or remove watch directories to the rTorrent config, run the 
-install script again and answer "yes" when it asks to overwrite the old
-config.
+install script again.
