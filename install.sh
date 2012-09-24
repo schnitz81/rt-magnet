@@ -24,6 +24,7 @@ if [ -s $RT_CONFIG ]; then
   # First get all non-comments section, extract load_start value, replace ~ 
   # with the $HOME variable, and dump it in the config file.
   grep -ohP '^[^#]{1,}' $RT_CONFIG | grep -ohP '(?<=load_start=)[^,]{1,}' | sed -e "s#~#$HOME##" >> $RT_MAGNET_CONFIG
+  echo "Config file created."
 else
   echo "$RT_CONFIG was not found in this directory!"
   echo "Exiting..."
@@ -36,5 +37,4 @@ if [ $UNIQ == true ]; then
   sort -u $RT_MAGNET_CONFIG -o $RT_MAGNET_CONFIG
 fi
 
-echo "Config file created."
 exit 0
