@@ -67,7 +67,7 @@ if(strlen($magnetlink)<12){
 
 $i = 1;
 while ($i <= 50) {
-   if (!file_exists ( $watchDirectory."new".$i.".torrent"  ) )
+   if (!file_exists ( $watchDirectory."/"."new".$i.".torrent"  ) )
 	break;
    $i++;
 }
@@ -77,7 +77,7 @@ if ($i > 50){
    exit;
 }
 
-$filePath = $watchDirectory."new".$i.".torrent";
+$filePath = $watchDirectory."/"."new".$i.".torrent";
 
 function makeTorrentFromMagnet($magnetlink)
 {
